@@ -88,6 +88,5 @@ input, textarea {
 h1 { 
   font-size: 200%; 
   line-height: 1.1; 
-  text-wrap: balance; 
+  text-wrap: balance;
 }
-
