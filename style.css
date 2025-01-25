@@ -90,4 +90,7 @@ label.color-scheme {
   right: 1em;
   font-size: 80%;
   display: flex;
+  select {
+    margin-left: 0.3em;
+  }
 }
