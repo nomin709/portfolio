@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
     <link rel="stylesheet" href="../style.css">
+    <script type="module" src="../global.js"></script>
     <style>
         h1 {
             padding: 1em; 
-            background-color: oklch(from var(--color-accent) 95% 5% h);
+            background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
             text-align: center;
         }
         h2{
@@ -35,15 +36,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>  
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../projects/index.html">Projects</a></li>
-            <li><a class="current" href="../resume/index.html">Resume</a></li>
-            <li><a href="../contact/index.html">Contact</a></li>
-            <li><a href="https://github.com/nomin709" target="_blank">GitHub</a></li>
-        </ul>
-    </nav>
+    
     <h1>Nomin Batjargal</h1>
     <section>
         <header><h2>Summary</h2></header>
