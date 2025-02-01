@@ -73,3 +73,39 @@ form?.addEventListener('submit', function(event) {
     }
     location.href = url;
 });
+
+export async function fetchJSON(url) {
+    try {
+        // Fetch the JSON file from the given URL
+        const response = await fetch(url);
+        console.log(response)
+        if (!response.ok) {
+            throw new Error(`Failed to fetch projects: ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log(data)
+        return data; 
+    } catch (error) {
+        console.error('Error fetching or parsing JSON data:', error);
+    }
+} 
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    containerElement.innerHTML = '';
+    for (let project of projects) {
+        const article = document.createElement('article');
+        article.innerHTML = `
+            <${headingLevel}>${project.title}</${headingLevel}>
+            <img src="${project.image}" alt="${project.title}">
+            <p>${project.description}</p>`;
+        containerElement.appendChild(article);
+    }
+}
+
+export function countProjects(containerElement, projects) {
+    containerElement.textContent = `${projects.length} Projects`;
+}
+
+export async function fetchGitHubData(username) {
+    return fetchJSON(`https://api.github.com/users/${username}`);
+}

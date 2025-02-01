@@ -94,3 +94,48 @@ label.color-scheme {
     margin-left: 0.3em;
   }
 }
+
+.resume {
+  h1 {
+    padding: 1em; 
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+    text-align: center;
+  }
+  h2{
+      border-bottom: 1px solid var(--color-accent);
+  }
+  time {
+      font-weight: 230;
+  }
+  .with_logo { 
+      display: flex; 
+      gap: 1em;
+      margin-top: 2em;
+  } 
+  img { 
+      width: 90px;
+      height: 90px;
+  }
+  .with_logo h4 {
+      margin: 0;
+  }
+  .with_logo ul {
+      margin-bottom: 0;
+  }
+}
+
+#profile-stats {
+  dl{ 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family:'Gill Sans';
+    font-size: 24px;
+    font-weight: lighter;
+  }
+  dt {
+    grid-row: 1; /* Place all <dt> elements in the first row */
+  }
+  dd {
+    grid-row: 2; /* Place all <dt> elements in the second row */
+  }
+}
