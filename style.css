@@ -73,8 +73,9 @@ input, textarea, select {
     grid-row: span 3;
   }
 
-  h2 {
+  .project-title {
     margin: 0;
+    margin-bottom: 1em;
   }
 }
 
@@ -199,4 +200,6 @@ path {
   padding: 0.5em;
   font-size: 18px;
   width: 100%;
+  margin-top: 1em; /* Adjust the value as needed */
+  margin-bottom: 1.5em; /* Adjust the value as needed */
 }
