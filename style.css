@@ -139,3 +139,61 @@ label.color-scheme {
     grid-row: 2; /* Place all <dt> elements in the second row */
   }
 }
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: auto;
+}
+
+.swatch {
+  display: inline-flex;
+  width: 1.2em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  padding: 1em;
+  border: 0.5px solid;
+  flex: 1;
+  gap: 1em;
+
+  li {
+    min-width: 1em;
+  }
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
