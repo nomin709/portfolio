@@ -27,10 +27,11 @@ function renderPieChart(projectsGiven) {
     let newArcs = newArcData.map((d) => arcGenerator(d));
 
     // clear up paths and legends
+
+    let selectedIndex = -1;
+
     let newSVG = d3.select('svg'); 
     newSVG.selectAll('path').remove();
-    let legend = d3.select('.legend');
-    legend.selectAll('li').remove();
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
     
@@ -40,7 +41,35 @@ function renderPieChart(projectsGiven) {
           .append('path')
           .attr('d', arc)
           .attr('fill', colors(idx)) // Fill in the attribute for fill color via indexing the colors variable
+          .on('click', () => {
+            selectedIndex = selectedIndex === idx ? -1 : idx;
+            newSVG
+                .selectAll('path')
+                .attr('class', (_, idx) => {
+                    // filter idx to find correct pie slice and apply CSS from above
+                    return selectedIndex === idx ? 'selected' : '';
+                });  
+
+            legend
+                .selectAll('li')
+                .attr('class', (_, idx) => {
+                    // filter idx to find correct legend and apply CSS from above
+                    return selectedIndex === idx ? 'labels selected' : 'labels';
+                });
+
+            if (selectedIndex === -1) {
+                renderProjects(projectsGiven, projectsContainer, 'h2');
+            } 
+            else {
+                // filter projects and project them onto webpage
+                let filteredProjects = projectsGiven.filter(project => project.year === newData[selectedIndex].label);
+                renderProjects(filteredProjects, projectsContainer, 'h2');
+            }
+          });
     })
+
+    let legend = d3.select('.legend');
+    legend.selectAll('li').remove();
 
     newData.forEach((d, idx) => {
         legend.append('li')
@@ -67,37 +96,4 @@ searchInput.addEventListener('input', (event) => {
     // re-render legends and pie chart when event triggers
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
-});
-
-let selectedIndex = -1;
-let svg = d3.select('svg');
-svg.selectAll('path').remove();
-arcs.forEach((arc, i) => {
-    svg
-        .append('path')
-        .attr('d', arc)
-        .attr('fill', colors(i))
-        .on('click', () => {
-            selectedIndex = selectedIndex === i ? -1 : i;
-            svg
-                .selectAll('path')
-                .attr('class', (_, idx) => {
-                    // filter idx to find correct pie slice and apply CSS from above
-                    return idx === selectedIndex ? 'selected' : '';
-                });
-
-            legend
-                .selectAll('li')
-                .attr('class', (_, idx) => {
-                    // filter idx to find correct legend and apply CSS from above
-                    return idx === selectedIndex ? 'selected' : '';
-                });
-                
-            if (selectedIndex === -1) {
-                renderProjects(projects, projectsContainer, 'h2');
-                } else {
-                // TODO: filter projects and project them onto webpage
-                // Hint: `.label` might be useful
-            }
-        });
 });

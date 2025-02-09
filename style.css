@@ -161,16 +161,13 @@ label.color-scheme {
   border: 0.5px solid;
   flex: 1;
   gap: 1em;
-
-  li {
-    min-width: 1em;
-  }
 }
 
 .labels {
   display: flex;
   align-items: center;
   gap: 0.4em;
+  min-width: 1em;
 }
 
 .container {
