@@ -194,3 +194,9 @@ path {
     fill: var(--color);
   }
 }
+
+.searchBar {
+  padding: 0.5em;
+  font-size: 18px;
+  width: 100%;
+}
