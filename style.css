@@ -252,7 +252,7 @@ circle.selected {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     font-family:'Gill Sans';
-    font-size: 20px;
+    font-size: 18px;
     font-weight: lighter;
     text-transform: capitalize;
   }
@@ -264,7 +264,7 @@ circle.selected {
 #language-breakdown {
   display: grid;
   font-family:'Gill Sans';
-  font-size: 21px;
+  font-size: 18px;
   text-align: center;
   dt {
     text-transform: uppercase;
