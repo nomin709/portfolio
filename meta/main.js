@@ -152,9 +152,10 @@ function createScatterplot() {
 
     // Create the axes
     const xAxis = d3.axisBottom(xScale);
+
     const yAxis = d3
-    .axisLeft(yScale)
-    .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
+      .axisLeft(yScale)
+      .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
 
     // Add X axis
     svg
