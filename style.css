@@ -80,7 +80,7 @@ input, textarea, select {
 }
 
 h1 { 
-  font-size: 200%; 
+  font-size: 300%; 
   line-height: 1.1; 
   text-wrap: balance;
 }
@@ -219,7 +219,20 @@ circle:hover {
 }
 
 dl.info {
-  /* ... other styles ... */
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* First column for dt, second for dd */
+  gap: 0.5em; /* Adds spacing between columns */
+  margin: 0; /* Remove default margin */
+
+  dt {
+    font-weight: normal; /* Make the labels less prominent */
+    text-transform: uppercase; /* Optional: transform labels to uppercase */
+  }
+  
+  dd {
+    font-weight: bold; /* Make the values stand out */
+    margin: 0; /* Remove default margin */
+  }
   transition-duration: 500ms;
   transition-property: opacity, visibility;
 }
@@ -271,5 +284,26 @@ circle.selected {
   }
   dd {
     grid-row: 2; 
+  }
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(211, 211, 211, 0.8); /* Light background for visibility */
+  border-radius: 5%;
+  padding: 0.5em; /* Add some padding for spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for visibility */
+  border: 1px solid #ccc;
+}
+
+#commit-link {
+  all: unset; /* Remove all previous styles */
+  
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

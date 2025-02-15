@@ -10,9 +10,8 @@ async function loadData() {
       datetime: new Date(row.datetime),
     }));
 
-    console.log(commits);
-
     displayStats();
+    console.log(commits);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -44,6 +43,9 @@ function processCommits() {
           value: lines,
           // What other options do we need to set?
           // Hint: look up configurable, writable, and enumerable
+          writable: false,       // Prevent modification of the 'lines' property
+          enumerable: false,     // Do not include 'lines' in property enumeration
+          configurable: false    // Prevent reconfiguration or deletion of this property
         });
   
         return ret;
@@ -81,7 +83,7 @@ function displayStats() {
         (d) => d.file
     );
     const averageFileLength = Math.round(d3.mean(fileLengths, (d) => d[1]));
-    dl.append('dt').text('Average File Length');
+    dl.append('dt').text('Average File Length (in lines)');
     dl.append('dd').text(averageFileLength);
 
     const workByPeriod = d3.rollups(
@@ -211,14 +213,27 @@ function createScatterplot() {
 function updateTooltipContent(commit) {
   const link = document.getElementById('commit-link');
   const date = document.getElementById('commit-date');
+  const time = document.getElementById('commit-time');
+  const author = document.getElementById('commit-author');
+  const linesEdited = document.getElementById('commit-lines-edited');
 
   if (Object.keys(commit).length === 0) return;
 
   link.href = commit.url;
   link.textContent = commit.id;
+
   date.textContent = commit.datetime?.toLocaleString('en', {
     dateStyle: 'full',
   });
+
+  time.textContent = commit.datetime?.toLocaleTimeString('en', {
+    timeStyle: 'short',
+  });
+
+  // Author
+  author.textContent = commit.author; // Fallback if no author is provided
+
+  linesEdited.textContent = commit.totalLines;
 }
 
 function updateTooltipVisibility(isVisible) {
