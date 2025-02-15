@@ -62,7 +62,7 @@ function displayStats() {
     dl.append('dd').text(data.length);
   
     // Add total commits
-    dl.append('dt').text('Total commits');
+    dl.append('dt').text('Total Commits');
     dl.append('dd').text(commits.length);
   
     // Add more stats as needed...
@@ -90,8 +90,17 @@ function displayStats() {
         (d) => new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' })
     );
     const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
-    dl.append('dt').text('Day of Most Work Done');
+    dl.append('dt').text('Peak Work Time');
     dl.append('dd').text(maxPeriod);
+
+    const lines = d3.rollups(
+      data,
+      (v) => d3.max(v, (v) => v.line),
+      (d) => d.file
+    );
+    const longestLine = d3.max(lines, (d) => d[1]);
+    dl.append('dt').text('Longest Line');
+    dl.append('dd').text(longestLine);
 }
 
 let xScale;
@@ -171,6 +180,8 @@ function createScatterplot() {
 
     // Use sortedCommits in your selection instead of commits
     dots.selectAll('circle').data(sortedCommits).join('circle');
+
+    updateTooltipVisibility(false);
 
     dots
     .selectAll('circle')

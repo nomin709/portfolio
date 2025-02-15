@@ -254,6 +254,10 @@ circle.selected {
     font-family:'Gill Sans';
     font-size: 20px;
     font-weight: lighter;
+    text-transform: capitalize;
+  }
+  dt {
+    font-weight: normal;
   }
 }
 
