@@ -13,7 +13,7 @@ async function loadData() {
     console.log(commits);
 
     displayStats();
- }
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
