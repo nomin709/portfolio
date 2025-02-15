@@ -12,8 +12,10 @@
 <body>
     <h1>Meta</h1>
     <p>This page includes stats about the code of this website.</p>
-    <div id="stats"></div>
-    <h2>Commits by time of day</h2>
+    <div id="stats">
+        <h2>Summary</h2>
+    </div>
+    <h2>Commits by Time of Day</h2>
     <div id="chart"></div>
     <dl id="commit-tooltip" class="info tooltip">
         <dt>Commit</dt>
@@ -26,5 +28,7 @@
       
         <!-- Add: Time, author, lines edited -->
     </dl>
+    <p id="selection-count">No commits selected</p>
+    <dl id="language-breakdown" class="stats"></dl>
 </body>
 </html>

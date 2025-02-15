@@ -242,3 +242,30 @@ dl.info[hidden]:not(:hover, :focus-within) {
   stroke-dasharray: 5 3;
   animation: marching-ants 2s linear infinite;
 }
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+#stats {
+  dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family:'Gill Sans';
+    font-size: 20px;
+    font-weight: lighter;
+  }
+}
+
+#language-breakdown {
+  display: grid;
+  font-family:'Gill Sans';
+  font-size: 21px;
+  text-align: center;
+  dt {
+    text-transform: uppercase;
+  }
+  dd {
+    grid-row: 2; 
+  }
+}
