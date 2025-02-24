@@ -307,3 +307,13 @@ circle.selected {
     cursor: pointer;
   }
 }
+
+#project-url {
+  all: unset;
+  color: blue;
+}
+
+#project-url:hover {
+  text-decoration: underline; /* add underline when hovered */
+  cursor: pointer;
+}
