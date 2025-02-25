@@ -69,13 +69,20 @@ input, textarea, select {
   gap: 1em;
 
   article {
-    grid-template-rows: subgrid;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     grid-row: span 3;
   }
 
   .project-title {
     margin: 0;
     margin-bottom: 1em;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 }
 

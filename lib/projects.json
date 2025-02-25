@@ -3,7 +3,7 @@
         "title": "Bikewatching",
         "url": "https://nomin709.github.io/bikewatching/",
         "year": 2025,
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "../images/bikewatching.png",
         "description": "An immersive, interactive map visualization of bike traffic in the Boston area during different times of the day."
     },
     {
