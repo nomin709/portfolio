@@ -197,12 +197,14 @@ function createScatterplot() {
     .attr('fill', 'steelblue')
     .on('mouseenter', (event, commit) => {
       d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
+      d3.select(event.currentTarget).classed('selected', selectedCommits.includes(commit));
       updateTooltipContent(commit);
       updateTooltipVisibility(true);
       updateTooltipPosition(event);
     })
     .on('mouseleave', () => {
       d3.select(event.currentTarget).style('fill-opacity', 0.7); // Restore transparency
+      d3.select(event.currentTarget).classed('selected', false);
       updateTooltipContent({});
       updateTooltipVisibility(false);
     });
@@ -256,25 +258,28 @@ function brushSelector() {
   d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
 }
 
-let brushSelection = null;
+let selectedCommits = [];
 
-function brushed(event) {
-  brushSelection = event.selection;
-  updateSelection();
-  updateSelectionCount();
-  updateLanguageBreakdown();
+function brushed(evt) {
+  let brushSelection = evt.selection;
+  selectedCommits = !brushSelection
+    ? []
+    : commits.filter((commit) => {
+        let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
+        let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
+        let x = xScale(commit.date);
+        let y = yScale(commit.hourFrac);
+
+        return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+      });
+
+    updateSelection();
+    updateSelectionCount();
+    updateLanguageBreakdown();
 }
 
 function isCommitSelected(commit) {
-  if (!brushSelection) {
-    return false;
-  }
-  // return true if commit is within brushSelection and false if not
-  const min = { x: brushSelection[0][0], y: brushSelection[0][1] }; 
-  const max = { x: brushSelection[1][0], y: brushSelection[1][1] }; 
-  const x = xScale(commit.date); 
-  const y = yScale(commit.hourFrac); 
-  return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+  return selectedCommits.includes(commit);
 }
 
 function updateSelection() {
@@ -283,10 +288,6 @@ function updateSelection() {
 }
 
 function updateSelectionCount() {
-  const selectedCommits = brushSelection
-    ? commits.filter(isCommitSelected)
-    : [];
-
   const countElement = document.getElementById('selection-count');
   countElement.textContent = `${
     selectedCommits.length || 'No'
@@ -296,9 +297,6 @@ function updateSelectionCount() {
 }
 
 function updateLanguageBreakdown() {
-  const selectedCommits = brushSelection
-    ? commits.filter(isCommitSelected)
-    : [];
   const container = document.getElementById('language-breakdown');
 
   if (selectedCommits.length === 0) {
