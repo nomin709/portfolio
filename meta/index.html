@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Meta</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../global.js" type="module"></script>
     <script src="main.js" type="module"></script>
@@ -11,12 +11,20 @@
 </head>
 <body>
     <h1>Meta</h1>
-    <p>This page includes stats about the code of this website.</p>
+    <p>This page includes stats about the code of this website.</p> 
     <div id="stats">
         <h2>Summary</h2>
     </div>
-    <h2>Commits by Time of Day</h2>
-    <div id="chart"></div>
+    <div id="scrollytelling">
+        <h2>Evolution Over Time</h2>
+        <h2>Commits by Time of Day</h2>
+        <div id="scroll-container">
+            <div id="spacer"></div>
+            <div id="items-container"></div>
+        </div>
+        <!-- our old scatterplot div -->
+        <div id="chart"></div>
+    </div>
     <dl id="commit-tooltip" class="info tooltip">
         <dt>Commit</dt>
         <dd>
@@ -38,5 +46,14 @@
     </dl>
     <p id="selection-count">No commits selected</p>
     <dl id="language-breakdown" class="stats"></dl>
+    <div id="scrollytelling">
+        <h2>Codebase Evolution</h2>
+        <h2>Evolution Over Time</h2>
+        <div id="scroll-container2">
+            <div id="spacer2"></div>
+            <div id="items-container2"></div>
+        </div>
+        <dl class="files"></dl>
+    </div>
 </body>
 </html>
